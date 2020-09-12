@@ -1,0 +1,72 @@
+{% load static %}
+<!-- navbar-->
+<header class="header">
+    <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow">
+        <a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
+            <i class="fas fa-align-left"></i>
+        </a>
+        <img src="{% static 'img/logo.jpg' %}" class="img-fluid" style="width: 5%;height: 5%;">
+        <a href="index.html" class="navbar-brand font-weight-bold text-uppercase text-base">
+          Spentech Dashboard
+        </a>
+        <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
+            <li class="nav-item dropdown ml-auto">
+                <a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+                    <img src="{% static 'img/avatar-6.jpg' %}" alt="Jason Doe" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow">
+                </a>
+                <div aria-labelledby="userInfo" class="dropdown-menu">
+                    <a href="#" class="dropdown-item">
+                        <strong class="d-block text-uppercase headings-font-family">Mark Stephen</strong>
+                        <small>Web Developer</small>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                </div>  
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="d-flex align-items-stretch">
+    <div id="sidebar" class="sidebar py-3">
+        <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
+        <ul class="sidebar-menu list-unstyled">
+            <li class="sidebar-list-item">
+                <a href="{% url 'home' %}" class="sidebar-link text-muted active">
+                  <i class="o-home-1 mr-3 text-gray"></i>
+                  <span>Manage Supplier</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{% url 'inventory' %}" class="sidebar-link text-muted">
+                  <i class="o-sales-up-1 mr-3 text-gray"></i>
+                  <span>Manage Inventory</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{% url 'checkout' %}" class="sidebar-link text-muted">
+                  <i class="o-sales-up-1 mr-3 text-gray"></i>
+                  <span>Checkout</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{% url 'transaction' %}" class="sidebar-link text-muted">
+                  <i class="o-sales-up-1 mr-3 text-gray"></i>
+                  <span>Transaction</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{% url 'report' %}" class="sidebar-link text-muted">
+                  <i class="o-sales-up-1 mr-3 text-gray"></i>
+                  <span>Generate Report</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{% url 'chart' %}" class="sidebar-link text-muted">
+                  <i class="o-sales-up-1 mr-3 text-gray"></i>
+                  <span>Charts</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% include 'home/transaction.html' %}
+</div>

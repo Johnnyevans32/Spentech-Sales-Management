@@ -1,0 +1,28 @@
+<main>
+	<div class="container">
+		<center>
+			<h2>Supplier Details</h2>
+		</center>
+		<div class="section"></div>
+		<table class="responsive-table highlight" style="margin-left: 3%;">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Supplier Name</th>
+					<th>Contact</th>
+					<th>Address</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in suppliers %}
+					<tr>
+						<td>{{i.id}}</td>
+						<td>{{i.sname}}</td>
+						<td>{{i.contact}}</td>
+						<td>{{i.address}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</main>

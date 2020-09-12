@@ -1,0 +1,36 @@
+{% extends "easy_pdf/base.html" %}
+
+{% block content %}
+<main>
+	<div class="container">
+		<center>
+			<h1>S I M S Reports</h1>
+			<h1>Username : {{user}}</h1>
+			<h2>Transaction Details</h2>
+			<h2>{% now "jS \o\f F" %}</h2>
+		</center>
+		<table>
+			<thead>
+				<tr>
+					<th>Customer Name</th>
+					<th>Quantity</th>
+					<th>Measurment</th>
+					<th>Price</th>
+					<th>Supplier</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in transaction_report %}
+				<tr>
+					<td>{{i.cust_name}}</td>
+					<td>{{i.quantity_r}}</td>
+					<td>{{i.pid.measurement}}</td>
+					<td>{{i.actual_price}}</td>
+					<td>{{i.pid.supplier.sname}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</main>
+{% endblock %}

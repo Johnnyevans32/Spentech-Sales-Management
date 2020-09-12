@@ -1,0 +1,26 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block body %}
+
+{% include 'home/navbar.html' %}
+
+{% if suppliers %}
+{% include 'home/supplier.html' %}
+{% endif %}
+
+{% if inventory %}
+{% include 'home/inventory.html' %}
+{% endif %}
+
+{% if checkout %}
+{% include 'home/checkout.html' %}
+{% endif %}
+
+
+{% if report %}
+{% include 'home/report.html' %}
+{% endif %}
+
+{% endblock body %}
+
