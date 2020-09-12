@@ -14,4 +14,4 @@ idna
 python-decouple
 requests
 urllib3
-django.utils.six
+django-utils-six
