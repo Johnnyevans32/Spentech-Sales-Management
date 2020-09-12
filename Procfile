@@ -1,2 +1,2 @@
-web: gunicorn wsgi
+web: gunicorn spentech_dashboard.wsgi
 web: python manage.py runserver 0.0.0.0:5000
