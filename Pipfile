@@ -1,0 +1,27 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+psycopg2-binary = "*"
+django-easy-pdf = "*"
+weasyprint = "*"
+django-heroku = "*"
+asgiref = "*"
+gunicorn = "*"
+pytz = "*"
+sqlparse = "*"
+Django = "*"
+django-libsass = "*"
+certifi = "*"
+chardet = "*"
+idna = "*"
+python-decouple = "*"
+requests = "*"
+urllib3 = "*"
+
+[requires]
+python_version = "3.7"

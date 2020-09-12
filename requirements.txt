@@ -1,0 +1,16 @@
+psycopg2-binary
+django-easy-pdf
+weasyprint
+django-heroku
+asgiref
+gunicorn
+pytz
+sqlparse
+Django
+django-libsass
+certifi
+chardet
+idna
+python-decouple
+requests
+urllib3
