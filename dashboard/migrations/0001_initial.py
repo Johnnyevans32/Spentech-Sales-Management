@@ -22,8 +22,7 @@ class Migration(migrations.Migration):
                 ('price', models.PositiveIntegerField()),
             ],
             options={
-                'db_table': 'home_supplierproductcostview',
-                'managed': False,
+                'db_table': 'home_supplierproductcostview'
             },
         ),
         migrations.CreateModel(

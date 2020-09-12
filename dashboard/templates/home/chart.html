@@ -3,64 +3,91 @@
 
 {% block body%}
 {% include 'home/navbar.html' %}
-<main>
-    <div class="container" width="500px" height="500px">
-        <canvas id="myChart"></canvas>
+<div class="page-holder w-100 d-flex flex-wrap">
+    <div class="container-fluid px-xl-5">
+        <section class="py-5">
+            <div class="row mb-4">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="mb-5 text-gray">Analysis</p>
+                            <div class="chart-holder mt-5 mb-5">
+                                <canvas id="lineChartExample"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-</main>
+</div>
 {% endblock %}
 
 {% block script %}
 <script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: {{listOfSuppliers|safe}},
-        datasets: [{
-            label: '# SupplierGraph',
-            data: {{dataOfProducts}},
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                },
-                scaleLabel: {
+    // ------------------------------------------------------- //
+    // Line Chart
+    // ------------------------------------------------------ //
+    var LINECHARTEXMPLE   = $('#lineChartExample');
+    var lineChartExample = new Chart(LINECHARTEXMPLE, {
+        type: 'line',
+        options: {
+            legend: {labels:{fontColor:"#777", fontSize: 12}},
+            scales: {
+                xAxes: [{
                     display: true,
-                    labelString: 'Cost of No. of Products in Inventory'
-                }
-            }],
-            xAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                },
-                scaleLabel: {
+                    gridLines: {
+                        color: '#fff'
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Suppliers'
+                    }
+                }],
+                yAxes: [{
                     display: true,
-                    labelString: 'Suppliers'
+                    ticks: {
+                        max: 100,
+                        min: 20
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Cost of No. of Products in Inventory'
+                    },
+                    gridLines: {
+                        color: '#fff'
+                    }
+                }]
+            },
+        },
+        data: {
+            labels: {{listOfSuppliers|safe}},
+            datasets: [
+                {
+                    label: "# SupplierGraph",
+                    fill: true,
+                    lineTension: 0.3,
+                    backgroundColor: gradient1,
+                    borderColor: 'rgba(210, 114, 181, 0.91)',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 2,
+                    pointBorderColor: gradient1,
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: gradient1,
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: {{dataOfProducts}},
+                    spanGaps: false
                 }
-            }] 
+            ]
         }
-    }
-});
+    });
 </script>
 {% endblock %}

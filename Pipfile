@@ -23,6 +23,7 @@ python-decouple = "*"
 requests = "*"
 urllib3 = "*"
 django-utils-six = "*"
+six = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,24 +1,56 @@
-<main>
-	<div class="container">
-		<center>
-			<h2>Report</h2>
-			<div class="section"></div>
+{% load static %}
+<div class="page-holder w-100 d-flex flex-wrap">
+    <div class="container-fluid px-xl-5">
+      	<section class="py-5">
+      		<center>
+				<h2>Report</h2>
+			</center>
+            <div class="row">
+              <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
+                <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                  <div class="flex-grow-1 d-flex align-items-center">
+                    <div class="dot mr-3 bg-violet"></div>
+                    <div class="text">
+                    	<form method="post">
+							{% csrf_token %}
+							<input type="hidden" name="ireport" value="1">
+							<button type="submit" class="btn indigo">Inventory Report</button>
+						</form>
+                    </div>
+                  </div>
+                  <div class="icon text-white bg-violet"><i class="fas fa-server"></i></div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
+                <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                  <div class="flex-grow-1 d-flex align-items-center">
+                    <div class="dot mr-3 bg-green"></div>
+                    <div class="text">
+	                    <form method="post">
+							{% csrf_token %}
+							<input type="hidden" name="treport" value="1">
+							<button type="submit" class="btn indigo">Transaction Report</button>
+						</form>
+                    </div>
+                  </div>
+                  <div class="icon text-white bg-green"><i class="far fa-clipboard"></i></div>
+                </div>
+              </div>
+            </div>
+      	</section>
+	</div>
+    <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col s6">
-					<form method="post">
-						{% csrf_token %}
-						<input type="hidden" name="ireport" value="1">
-						<button type="submit" class="btn indigo">Inventory Report</button>
-					</form>
+				<div class="col-md-6 text-center text-md-left text-primary">
+					<p class="mb-2 mb-md-0">Spentech &copy; 2020</p>
 				</div>
-				<div class="col s6">
-					<form method="post">
-						{% csrf_token %}
-						<input type="hidden" name="treport" value="1">
-						<button type="submit" class="btn indigo">Transaction Report</button>
-					</form>
+				<div class="col-md-6 text-center text-md-right text-gray-400">
+					<p class="mb-0">Created by 
+					  <a href="https://jevan.netlify.app/" class="external text-gray-400">jevan</a>
+					</p>
 				</div>
 			</div>
-		</center>
-	</div>
-</main>
+		</div>
+    </footer>
+</div>

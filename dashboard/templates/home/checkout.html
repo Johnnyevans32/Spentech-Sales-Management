@@ -1,146 +1,174 @@
-<main>
-	<center>
-		<h2>Checkout</h2>
-	</center>
-	<div class="section"></div>
-	<div class="row">
-		<div class="col s6">
+{% load static %}
+<div class="page-holder w-100 d-flex flex-wrap">
+ 	<div class="container-fluid px-xl-5">
+   	<section class="py-5">
+   		<center>
+				<h2>Checkout</h2>
+			</center>
 			<center><h5>Cart</h5></center>
-			<table>
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Customer Name</th>
-						<th>Product</th>
-						<th>Quantity</th>
-						<th>Price</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for i in cart %}
-						<tr>
-							<td>{{i.id}}</td>
-							<td>{{i.cust_name}}</td>
-							<td>{{i.pid_id}}</td>
-							<td>{{i.quantity_r}}</td>
-							<td>{{i.actual_price}}</td>
-							<td></td>
-							<td>
-								<form method="POST">
-									{% csrf_token %}
-									<input type="hidden" name="tiddel" value="{{i.id}}">
-									<button type="submit" class="btn indigo">
-										DELETE
-									</button>
-								</form>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-
-			<div class="section"></div>
-			<div>
-				<form method="POST">
+         <div class="row">
+         	{% for i in cart %}
+				<div class="col-lg-12">
+					<a href="#" class="message card px-5 py-3 mb-4 bg-hover-gradient-primary no-anchor-style">
+						<div class="row">
+							<div class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
+								<strong class="h5 mb-0">
+									24<sup class="smaller text-gray font-weight-normal">Apr</sup>
+								</strong>
+								{{i.id}}
+								<h6 class="mb-0">{{i.cust_name}}</h6>
+							</div>
+							<div class="col-lg-9 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
+							  	<div class="bg-gray-100 roundy px-4 py-1 mr-0 mr-lg-3 mt-2 mt-lg-0 text-dark exclode">
+							    	{{i.quantity_r}}
+							  	</div>
+							  	<p class="mb-0 mt-3 mt-lg-0">{{i.pid_id}}</p>
+							  	<p class="mb-0 mt-3 mt-lg-0">{{i.actual_price}}</p>
+							  	<span>
+							  		<form method="POST">
+										{% csrf_token %}
+										<input type="hidden" name="tiddel" value="{{i.id}}">
+										<button type="submit" class="btn indigo">
+											DELETE
+										</button>
+									</form>
+							  	</span>
+							</div>
+						</div>
+					</a>
+				</div>
+           	{% endfor %}
+           	<form method="POST">
 					{% csrf_token %}
 					<input type="hidden" name="checkoutrequest" value="1">
 					<button class="btn btn-large indigo">Checkout</button>
 				</form>
-			</div>
-			
-		</div>
-		<div class="col s6">
-			<table class="highlight">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Product Name</th>
-					<th>Quantity</th>
-					<th>Measurement</th>
-					<th>Selling Price</th>
-					<th>Supplier</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for i in inventory_checkout %}
-					<tr>
-						<td>{{i.id}}</td>
-						<td>{{i.pname}}</td>
-						<td>{{i.quantity}}</td>
-						<td>{{i.measurement}}</td>
-						<td>{{i.selling_price}}</td>
-						<td>{{i.supplier}}</td>
-						<td>
-							<!-- Modal Trigger -->
-							<a class="waves-effect waves-light btn modal-trigger indigo" href="#{{i.id}}">
-								<i class="material-icons">add_circle</i>
-							</a>
-							<form method="post">
-							{% csrf_token %}
-							<!-- Modal Structure -->
-							  <div id="{{i.id}}" class="modal">
-							    <div class="modal-content">
-							      <h4>Add to cart</h4>
-							      <div class="row">
-								        <div class="input-field col s12">
-								          <input id="cname" type="text" name="cname">
-								          <label for="cname">Customer Name</label>
-								        </div>
-								    </div>
+           	<div class="col-lg-6 mb-4">
+             	<div class="card">
+                  <div class="card-header">
+                    <h6 class="text-uppercase mb-0"></h6>
+                  </div>
+                  <div class="card-body">                           
+                    <table class="table table-striped table-hover card-text">
+                   		<thead>
+	                        <tr>
+	                          <th>#</th>
+										<th>Product Name</th>
+										<th>Quantity</th>
+										<th>Measurement</th>
+										<th>Selling Price</th>
+										<th>Supplier</th>
+										<th></th>
+	                        </tr>
+                      	</thead>
+                      	<tbody>
+                      		{% for i in inventory_checkout %}
+	                        <tr>
+	                          	<th scope="row">1</th>
+	                          	<td>{{i.id}}</td>
+										<td>{{i.pname}}</td>
+										<td>{{i.quantity}}</td>
+										<td>{{i.measurement}}</td>
+										<td>{{i.selling_price}}</td>
+										<td>{{i.supplier}}</td>
+										<td>
+											<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger">Register a Sale</button>
+						             	<!-- Modal-->
+						               <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						               	<div role="document" class="modal-dialog">
+						                    	<div class="modal-content">
+														<div class="modal-header">
+															<img src="{% static 'img/logo.jpg' %}" class="img-fluid" style="width: 20%;height: 20%;">
+															<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+														</div>
+						                   		<div class="modal-body">
+						                        	<form method="POST">
+						                        		{% csrf_token %}
+						                        		<div id="{{i.id}}" class="modal">
+																   <div class="modal-content">
+																      <h4>Add to cart</h4>
+																      <div class="form-group">
+																        	<div class="input-field col s12">
+																          	<input id="cname" class="form-control" type="text" name="cname">
+																          	<label for="cname">Customer Name</label>
+																        </div>
+																	   </div>
 
-								    <div class="row">
-								        <div class="input-field col s12">
-								          <input disabled id="pname" type="text" value="{{i.pname}}" class="black-text">
-								          <input type="hidden" value="{{i.id}}" name="pid">
-								          <label for="panme">Product</label>
-								        </div>
-								    </div>
+																	   <div class="form-group">
+																        	<div class="input-field col s12">
+																	         <input disabled id="pname" type="text" value="{{i.pname}}" class="black-text">
+																	         <input type="hidden" value="{{i.id}}" name="pid">
+																	         <label for="panme">Product</label>
+																	       </div>
+																	   </div>
 
-								    <div class="row">
-								        <div class="input-field col s12">
-								          <input disabled id="quantity_a" type="text" value="{{i.quantity}}" class="black-text">
-								          <label for="quantity_a">Quantity Available</label>
-								        </div>
-								    </div>
+																	   <div class="form-group">
+																	      <div class="input-field col s12">
+																	         <input disabled id="quantity_a" type="text" value="{{i.quantity}}" class="form-control">
+																	         <label for="quantity_a">Quantity Available</label>
+																	      </div>
+																	   </div>
 
-								    <div class="row">
-								        <div class="input-field col s12">
-								          <input id="quantity_r" type="text" name="qreq">
-								          <label for="quantity_r">Quantitiy Required</label>
-								        </div>
-								    </div>
+																	   <div class="form-group">
+																	      <div class="input-field col s12">
+																	         <input id="quantity_r" type="text" name="qreq">
+																	         <label for="quantity_r">Quantitiy Required</label>
+																	      </div>
+																	   </div>
 
-								    <div class="row">
-								        <div class="input-field col s12">
-								          <input disabled id="measurement" type="text" value="{{i.measurement}}" class="black-text">
-								          <label for="measurement">Measurement</label>
-								        </div>
-								    </div>
+																	   <div class="form-group">
+																	      <div class="input-field col s12">
+																	         <input disabled id="measurement" type="text" value="{{i.measurement}}" class="form-control">
+																	         <label for="measurement">Measurement</label>
+																	      </div>
+																	   </div>
 
-								    <div class="row">
-								        <div class="input-field col s12">
-								          <input disabled id="supplier" type="text" value="{{i.supplier}}" class="black-text">
-								          <label for="supplier">Supplier</label>
-								        </div>
-								    </div>
-							    </div>
-							    <div class="modal-footer">
-							      <input type="hidden" name="pid" value="{{i.id}}">
-								  <button type="submit" class="btn indigo left">Add</button>
-							    </div>
-							  </div>
-						</form>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		</div>
+																	   <div class="form-group">
+																        	<div class="input-field col s12">
+																	         <input disabled id="supplier" type="text" value="{{i.supplier}}" class="form-control">
+																	         <label for="supplier">Supplier</label>
+																	      </div>
+																	   </div>
+																   </div>
+																   <div class="form-group">
+																      <input type="hidden" name="pid" value="{{i.id}}">
+																	   <button type="submit" class="btn btn-danger">Add</button>
+																   </div>
+																</div>
+							                        </form>
+						                   		</div>
+						                      	<div class="modal-footer">
+						                        	<button type="button" data-dismiss="modal" class="btn btn-light bg-hover-gradient-primary">Close</button>
+						                      	</div>
+						                		</div>
+						       				</div>
+						        			</div>
+										</td>
+	                        </tr>
+	                        {% endfor %}
+                      	</tbody>
+                    	</table>
+                  </div>
+             	</div>
+           	</div>
+     		</div>
+   	</section>
 	</div>
-</main>
-
+ 	<footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 text-center text-md-left text-primary">
+					<p class="mb-2 mb-md-0">Spentech &copy; 2020</p>
+				</div>
+				<div class="col-md-6 text-center text-md-right text-gray-400">
+					<p class="mb-0">Created by 
+					  <a href="https://jevan.netlify.app/" class="external text-gray-400">jevan</a>
+					</p>
+				</div>
+			</div>
+		</div>
+ 	</footer>
+</div>
 
 
   
