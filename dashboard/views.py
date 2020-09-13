@@ -30,6 +30,9 @@ from django.http import JsonResponse
 # Create your views here.
 from .models import Supplier, Inventory, Transaction, SupplierProductCostView
 
+def base_layout(request):
+    template='home/base.html'
+    return render(request, template)
 
 def signin(request):   
     if request.method == 'POST':
