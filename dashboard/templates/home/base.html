@@ -6,7 +6,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Spentech Dashboard</title>
     {% progressive_web_app_meta %}
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,6 +29,7 @@
     <link rel="manifest" href="{% static 'manifest.json' %}">
 
     <link rel="apple-touch-icon" href="{% static 'img/favicon.png?3' %}">
+    <title> Spentech | {% block title %}Title Missing{% endblock title %}</title>
   </head>
   <body>
     {% block body %}

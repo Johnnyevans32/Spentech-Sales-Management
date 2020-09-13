@@ -1,18 +1,17 @@
-{% extends 'home/base.html' %}
+{% load static %}
 
-
-{% block body%}
-{% include 'home/navbar.html' %}
 <div class="page-holder w-100 d-flex flex-wrap">
     <div class="container-fluid px-xl-5">
         <section class="py-5">
             <div class="row mb-4">
-                <div class="col-lg-8 mb-4 mb-lg-0">
+                <div class="col-lg-12 mb-4 mb-lg-0">
                     <div class="card">
+                        <div class="card-header">
+                            <h2 class="h6 text-uppercase mb-0">Sales Analysis</h2>
+                        </div>
                         <div class="card-body">
-                            <p class="mb-5 text-gray">Analysis</p>
                             <div class="chart-holder mt-5 mb-5">
-                                <canvas id="lineChartExample"></canvas>
+                                <canvas id="lineChar"></canvas>
                             </div>
                         </div>
                     </div>
@@ -21,14 +20,70 @@
         </section>
     </div>
 </div>
-{% endblock %}
 
 {% block script %}
 <script>
     // ------------------------------------------------------- //
     // Line Chart
     // ------------------------------------------------------ //
-    var LINECHARTEXMPLE   = $('#lineChartExample');
+    var LINECHARTEXMPLE   = $('#lineChar');
+    var lineChartExample = new Chart(LINECHARTEXMPLE, {
+        type: 'line',
+        options: {
+            legend: {labels:{fontColor:"#777", fontSize: 12}},
+            scales: {
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        color: '#fff'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        max: 100,
+                        min: 20
+                    },
+                    gridLines: {
+                        color: '#fff'
+                    }
+                }]
+            },
+        },
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [
+                {
+                    label: "Data Set One",
+                    fill: true,
+                    lineTension: 0.3,
+                    backgroundColor: gradient1,
+                    borderColor: 'rgba(210, 114, 181, 0.91)',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 2,
+                    pointBorderColor: gradient1,
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: gradient1,
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [0, 50, 33, 71, 49, 55, 35, 40, 30, 50, 25, 40],
+                    spanGaps: false
+                }
+            ]
+        }
+    });
+
+    // ------------------------------------------------------- //
+    // Line Chart
+    // ------------------------------------------------------ //
+    var LINECHARTEXMPLE   = $('#lineChart');
     var lineChartExample = new Chart(LINECHARTEXMPLE, {
         type: 'line',
         options: {

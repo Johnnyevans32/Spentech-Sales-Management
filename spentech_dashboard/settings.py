@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'dashboard',
     'pwa',
+    'easy_pdf',
 ]
 
 MIDDLEWARE = [

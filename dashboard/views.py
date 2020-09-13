@@ -166,12 +166,13 @@ def report(request):
 
 
 def chart(request):
-    listOfSuppliers = [i['sname'] for i in SupplierProductCostView.objects.all().values('sname')]
-    dataOfProducts  = [i['price'] if i['price'] is not None else 0 for i in SupplierProductCostView.objects.all().values('price')]
-    print(listOfSuppliers,dataOfProducts)
+    listOfSuppliers = []
+    ds = Inventory.objects.all()
+    for i in ds:
+        listOfSuppliers.append(i) 
+    print(listOfSuppliers, ds)
     context = {
-        'listOfSuppliers':listOfSuppliers,
-        'dataOfProducts':dataOfProducts,
+        'listOfSuppliers':listOfSuppliers
     }
-    return render(request, 'home/chart.html',context)
+    return render(request, 'home/index.html',context)
 
