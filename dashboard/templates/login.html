@@ -1,3 +1,4 @@
+{% extends 'home/base.html' %}
 {% block content %}
 {% load static %}
 {% load pwa %}
@@ -30,7 +31,7 @@
 
     <link rel="apple-touch-icon" href="{% static 'img/favicon.png?3' %}">
   </head>
-  <body>
+  <body style="font-family: damn1;">
     <div class="page-holder d-flex align-items-center">
       <div class="container">
         <div class="row align-items-center py-5">
@@ -41,7 +42,7 @@
           </div>
           <div class="col-lg-5 px-lg-4 text-center">
             <img src="{% static 'img/favicon.png' %}" class="img-fluid" style="width: 40%;height: 40%;">
-            <h2 class="mb-4">Welcome Back!</h2>
+            <h2 class="mb-4" style="font-family: damn;">Welcome Back!</h2>
             <form id="loginForm" action="{% url 'signin' %}" method="POST" class="mt-4">
               {% csrf_token %}
                

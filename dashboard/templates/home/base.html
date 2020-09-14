@@ -29,9 +29,33 @@
     <link rel="manifest" href="{% static 'manifest.json' %}">
 
     <link rel="apple-touch-icon" href="{% static 'img/favicon.png?3' %}">
-    <title> Spentech | {% block title %}Title Missing{% endblock title %}</title>
+    <title> Spentech </title>
   </head>
-  <body>
+  <body style="font-family: damn1;">
+    
+    <style type="text/css">
+        @font-face{
+            font-family: damn;
+            src:url({% static 'fonts/Alegreya-BoldItalic.ttf' %});
+        }
+        @font-face{
+            font-family: damn1;
+            src:url({% static 'fonts/Lato-Bold.ttf' %});
+        }
+        @font-face{
+            font-family: damn2;
+            src:url(Genera-AltLight.ttf);
+        }
+        @font-face{
+            font-family: damn3;
+            src:url(Dosis-Regular.ttf);
+        }
+        @font-face{
+            font-family: damn4;
+            src:url(DMoon 2.0 Regular 400.ttf);
+        }
+    </style>
+
     {% block body %}
     {% endblock %}
     
